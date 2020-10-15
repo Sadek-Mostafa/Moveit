@@ -1,0 +1,8 @@
+controller_list:
+  - name: fake_igus_plannig_controller
+    joints:
+      - j1
+      - j2
+      - j3
+      - j4
+      - ee_joint

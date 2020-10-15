@@ -1,0 +1,424 @@
+<robot
+  name="igus">
+  <link 
+    name="world"/>
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="-0.11799 0.01077 0.068117"
+        rpy="0 0 0" />
+      <mass
+        value="1.1923" />
+      <inertia
+        ixx="0.00070195"
+        ixy="0.00010761"
+        ixz="-0.00040672"
+        iyy="0.0060428"
+        iyz="1.5596E-05"
+        izz="0.0061724" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://igus_description/meshes/base_link.stl" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://igus_description/meshes/collision/base_link.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <joint 
+    name="base_joint" 
+    type="fixed">
+    <origin 
+      xyz="0 0 0" 
+      rpy="0 0 0"/>
+    <parent 
+      link="world"/>
+    <child 
+      link="base_link"/>
+  </joint>
+  <link
+    name="l1">
+    <inertial>
+      <origin
+        xyz="-0.035381 -0.002031 0.089515"
+        rpy="0 0 0" />
+      <mass
+        value="0.90556" />
+      <inertia
+        ixx="0.00062161"
+        ixy="6.6975E-05"
+        ixz="-0.00063113"
+        iyy="0.0033858"
+        iyz="3.2883E-05"
+        izz="0.0031835" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://igus_description/meshes/l1.stl" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://igus_description/meshes/collision/l1.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="j1"
+    type="continuous">
+    <origin
+      xyz="-0.06 0 0.1075"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="l1" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0.41866" />
+    <dynamics
+      damping="1"
+      friction="1" />
+  </joint>
+  <link
+    name="l2">
+    <inertial>
+      <origin
+        xyz="-0.0023766 0.21095 0.0013442"
+        rpy="0 0 0" />
+      <mass
+        value="0.41357" />
+      <inertia
+        ixx="0.0018715"
+        ixy="-0.00030861"
+        ixz="-8.8617E-06"
+        iyy="0.00017461"
+        iyz="-3.2066E-05"
+        izz="0.0019042" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://igus_description/meshes/l2.stl" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://igus_description/meshes/collision/l2.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="j2"
+    type="revolute">
+    <origin
+      xyz="0 0 0.1099"
+      rpy="1.5708 1.0619E-14 9.3617E-15" />
+    <parent
+      link="l1" />
+    <child
+      link="l2" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-1.2211"
+      upper="1.9189"
+      effort="0"
+      velocity="0.41866" />
+    <dynamics
+      damping="1"
+      friction="1" />
+  </joint>
+  <link
+    name="l3">
+    <inertial>
+      <origin
+        xyz="-0.0083736 -0.19467 0.0015264"
+        rpy="0 0 0" />
+      <mass
+        value="0.36467" />
+      <inertia
+        ixx="0.0012053"
+        ixy="-0.00023472"
+        ixz="7.8773E-06"
+        iyy="0.00016033"
+        iyz="2.3891E-05"
+        izz="0.0012297" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://igus_description/meshes/l3.stl" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://igus_description/meshes/collision/l3.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="j3"
+    type="revolute">
+    <origin
+      xyz="0.016 0.26953 0"
+      rpy="-4.5612E-15 -1.1985E-14 1.5708" />
+    <parent
+      link="l2" />
+    <child
+      link="l3" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-1.7444"
+      upper="0.95944"
+      effort="0"
+      velocity="0.52333" />
+    <dynamics
+      damping="1"
+      friction="1" />
+  </joint>
+  <link
+    name="l4">
+    <inertial>
+      <origin
+        xyz="9.7148E-05 -0.12669 1.5638E-05"
+        rpy="0 0 0" />
+      <mass
+        value="0.20247" />
+      <inertia
+        ixx="0.00046894"
+        ixy="-2.1755E-07"
+        ixz="-4.3689E-09"
+        iyy="1.2285E-05"
+        iyz="4.0423E-07"
+        izz="0.00046579" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://igus_description/meshes/l4.stl" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://igus_description/meshes/collision/l4.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="j4"
+    type="revolute">
+    <origin
+      xyz="-0.025 -0.23869 0"
+      rpy="-1.1985E-14 -8.1158E-15 -1.5708" />
+    <parent
+      link="l3" />
+    <child
+      link="l4" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-1.8317"
+      upper="0.95944"
+      effort="0"
+      velocity="0.52333" />
+    <dynamics
+      damping="1"
+      friction="1" />
+  </joint>
+  <link 
+    name="ee_link">
+    <collision>
+      <geometry>
+        <box size="0.01 0.01 0.01"/>
+      </geometry>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+      </collision>
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="0.01" />
+      <inertia
+        ixx="0.01" ixy="0.01" ixz="0.01"
+        iyy="0.01" iyz="0.01"
+        izz="0.01" />
+      </inertial>
+  </link>
+  <joint
+    name="ee_joint"
+    type="continuous">
+    <origin
+      xyz="0 -0.19035 0"
+      rpy="1.5708 9.0657E-15 8.3279E-16" />
+    <parent
+      link="l4" />
+    <child
+      link="ee_link" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0.628" />
+    <dynamics
+      damping="1"
+      friction="1" />
+  </joint>
+  <gazebo>
+   <plugin name="ros_control" filename="libgazebo_ros_control.so">
+     <alwaysOn>true</alwaysOn>
+     <updateRate>1000.0</updateRate>
+     #<legacyModeNS>true</legacyModeNS> #added by me.New settings required for new gazebo. But i decided to use old gazebo. So, commenting this part 
+   </plugin>
+  </gazebo>
+
+  <gazebo reference="base_link">
+   <turnGravityOff>true</turnGravityOff>   
+  </gazebo>
+
+  <gazebo reference="l1">
+   <turnGravityOff>true</turnGravityOff>   
+  </gazebo>
+  
+  <gazebo reference="l2">
+   <turnGravityOff>true</turnGravityOff>   
+  </gazebo>
+
+  <gazebo reference="l3">
+   <turnGravityOff>true</turnGravityOff>   
+  </gazebo>
+  
+  <gazebo reference="l4">
+   <turnGravityOff>true</turnGravityOff>   
+  </gazebo>
+  
+  <gazebo reference="ee_link">
+   <turnGravityOff>true</turnGravityOff>   
+  </gazebo>
+
+  <transmission name="tran1">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="j1">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor1">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="tran2">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="j2">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor2">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="tran3">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="j3">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor3">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="tran4">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="j4">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor4">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="tran5">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="ee_joint">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor5">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+</robot>
