@@ -1,0 +1,32 @@
+<launch>
+  <arg name="use_sim_time" default="true"/>
+  <arg name="limited" default="false"/>
+  <arg name="paused" default="false"/>
+  <arg name="gui" default="true"/>
+  
+  <!-- startup simulated world -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" default="worlds/empty.world"/>
+    <arg name="paused" value="$(arg paused)"/>
+    <arg name="gui" value="$(arg gui)"/>
+    <arg name="use_sim_time" default="$(arg use_sim_time)"/>
+  </include>
+
+  <!-- send robot urdf to param server -->
+  <include file="$(find igus_description)/launch/display.launch">
+  </include>
+
+  <!-- push robot_description to factory and spawn robot in gazebo -->
+  <node name="spawn_gazebo_model" pkg="gazebo_ros" type="spawn_model" args="-urdf -param robot_description -model robot -z 0.001" respawn="false" output="screen" />
+
+  <rosparam file="$(find igus_gazebo)/controller/igus_controller.yaml" command="load"/>
+  <node name="igus_controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" args="
+                     joint_state_controller
+                     arm_controller
+                     --shutdown-timeout 50"/>
+
+  <node name="robot_state_publisher_igus" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen">
+    <param name="publish_frequency" type="double" value="5.0"/>
+  </node>
+
+</launch>

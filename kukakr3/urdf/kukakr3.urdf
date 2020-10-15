@@ -1,0 +1,468 @@
+<robot
+  name="kukakr3">
+  <link name = "world">
+    <inertial>
+      <origin
+        xyz="-0.23 0 0"
+        rpy="0 0 0" />
+    </inertial>
+  </link>
+  <joint
+    name="fixed0"
+    type="fixed">
+    <origin
+      xyz="-0.23 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="world" />
+    <child
+      link="base_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint> 
+ 
+ <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="-0.0018864 -3.5166E-08 0.077658"
+        rpy="0 0 0" />
+      <mass
+        value="4.7424" />
+      <inertia
+        ixx="0"
+        ixy="0"
+        ixz="0"
+        iyy="0"
+        iyz="0"
+        izz="0" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://kukakr3/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://kukakr3/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="headarm">
+    <inertial>
+      <origin
+        xyz="0.01397 -0.015936 0.13297"
+        rpy="0 0 0" />
+      <mass
+        value="13.487" />
+      <inertia
+        ixx="0.00021507"
+        ixy="9.6297E-06"
+        ixz="-7.2191E-06"
+        iyy="3.0113E-05"
+        iyz="3.4789E-05"
+        izz="0.00023073" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://kukakr3/meshes/headarm.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.2 0.2 0.2 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://kukakr3/meshes/headarm.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="headarm"
+    type="continuous">
+    <origin
+      xyz="0 0 0.175"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="headarm" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-3.1415"
+      upper="3.1415"
+      effort="0"
+      velocity="4.188" />
+  </joint>
+  <link
+    name="lowerarm">
+    <inertial>
+      <origin
+        xyz="-0.051326 -0.10098 0.041802"
+        rpy="0 0 0" />
+      <mass
+        value="4.7698" />
+      <inertia
+        ixx="4.8356E-05"
+        ixy="-1.651E-05"
+        ixz="-1.0495E-05"
+        iyy="2.5603E-05"
+        iyz="-2.0096E-05"
+        izz="5.1519E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://kukakr3/meshes/lowerarm.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.2 0.2 0.2 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://kukakr3/meshes/lowerarm.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="lowerarm"
+    type="revolute">
+    <origin
+      xyz="0.1 0.094 0.175"
+      rpy="-1.5708 0 0" />
+    <parent
+      link="headarm" />
+    <child
+      link="lowerarm" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-0.785"
+      upper="2.356"
+      effort="0"
+      velocity="3.66" />
+  </joint>
+  <link
+    name="upperarm">
+    <inertial>
+      <origin
+        xyz="0.0324460175273932 3.69925123311354E-07 0.0899424685089879"
+        rpy="0 0 0" />
+      <mass
+        value="3.19834503634833" />
+      <inertia
+        ixx="0"
+        ixy="0"
+        ixz="0"
+        iyy="0"
+        iyz="0"
+        izz="0" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://kukakr3/meshes/upperarm.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 0.498039215686275 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://kukakr3/meshes/upperarm.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="upperarm"
+    type="revolute">
+    <origin
+      xyz="-0.12007 -0.23624 0"
+      rpy="3.1416 0 3.1416" />
+    <parent
+      link="lowerarm" />
+    <child
+      link="upperarm" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-3.926"
+      upper="0.785"
+      effort="0"
+      velocity="4.188" />
+  </joint>
+  <link
+    name="foreupper">
+    <inertial>
+      <origin
+        xyz="5.1844E-06 -3.9264E-05 0.11465"
+        rpy="0 0 0" />
+      <mass
+        value="3.5742" />
+      <inertia
+        ixx="0"
+        ixy="0"
+        ixz="0"
+        iyy="0"
+        iyz="0"
+        izz="0" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://kukakr3/meshes/foreupper.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://kukakr3/meshes/foreupper.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="foreupper"
+    type="revolute">
+    <origin
+      xyz="-0.035 0 0.094"
+      rpy="-1.5708 0 1.5708" />
+    <parent
+      link="upperarm" />
+    <child
+      link="foreupper" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-3.1415"
+      upper="3.1415"
+      effort="0"
+      velocity="6.544" />
+  </joint>
+  <link
+    name="wrist">
+    <inertial>
+      <origin
+        xyz="0.0171303857544192 0 0.0370000000000103"
+        rpy="0 0 0" />
+      <mass
+        value="0.295781549289781" />
+      <inertia
+        ixx="0"
+        ixy="0"
+        ixz="0"
+        iyy="0"
+        iyz="0"
+        izz="0" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://kukakr3/meshes/wrist.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://kukakr3/meshes/wrist.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="wrist"
+    type="revolute">
+    <origin
+      xyz="0 0.036 0.235"
+      rpy="1.5708 1.5708 0" />
+    <parent
+      link="foreupper" />
+    <child
+      link="wrist" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-2.356"
+      upper="2.356"
+      effort="0"
+      velocity="5.23" />
+  </joint>
+  <link
+    name="effector">
+    <inertial>
+      <origin
+        xyz="2.8774E-05 -5.0203E-15 0.026109"
+        rpy="0 0 0" />
+      <mass
+        value="0.16216" />
+      <inertia
+        ixx="0"
+        ixy="0"
+        ixz="0"
+        iyy="0"
+        iyz="0"
+        izz="0" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://kukakr3/meshes/effector.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.2 0.2 0.2 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://kukakr3/meshes/effector.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="axis6"
+    type="continuous">
+    <origin
+      xyz="-0.021 0 0.037"
+      rpy="-1.5708 0 1.5708" />
+    <parent
+      link="wrist" />
+    <child
+      link="effector" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      effort="0"
+      velocity="6.544" />
+  </joint>
+  <link
+    name="tool">
+    <inertial>
+      <origin
+        xyz="-0.00037948 -5.6979E-05 0.008911"
+        rpy="0 0 0" />
+      <mass
+        value="0.1439" />
+      <inertia
+        ixx="0"
+        ixy="0"
+        ixz="0"
+        iyy="0"
+        iyz="0"
+        izz="0" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://kukakr3/meshes/tool.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://kukakr3/meshes/tool.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="tool"
+    type="fixed">
+    <origin
+      xyz="0.0003218 0 0.054"
+      rpy="2.3991E-29 1.1751E-43 2.8191E-72" />
+    <parent
+      link="effector" />
+    <child
+      link="tool" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+  </joint>
+</robot>

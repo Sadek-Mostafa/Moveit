@@ -1,0 +1,38 @@
+joint_state_controller:
+  type: joint_state_controller/JointStateController
+  publish_rate: 50
+
+arm_controller:
+  type: position_controllers/JointTrajectoryController
+  joints:
+     - j1
+     - j2
+     - j3
+     - j4
+     - ee_joint
+#added by me
+#/gazebo_ros_control:
+#  pid_gains:
+#      j1:
+#          p: 10.0
+#          i: 0.01
+#          d: 0
+#      j2:
+#          p: 10.0
+#          i: 0.01
+#          d: 0
+#      j3:
+#          p: 10.0
+#          i: 0.01
+#          d: 0
+#      j4:
+#          p: 10.0
+#          i: 0.01
+#          d: 0
+#      ee_joint:
+#          p: 10.0
+#          i: 0.01
+#          d: 0
+
+
+
