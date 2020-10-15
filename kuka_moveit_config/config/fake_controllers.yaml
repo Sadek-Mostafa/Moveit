@@ -1,0 +1,9 @@
+controller_list:
+  - name: fake_kr3_controller
+    joints:
+      - headarm
+      - lowerarm
+      - upperarm
+      - foreupper
+      - wrist
+      - axis6

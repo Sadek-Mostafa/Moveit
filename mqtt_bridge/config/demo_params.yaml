@@ -1,0 +1,273 @@
+mqtt:
+  client:
+    protocol: 4      # MQTTv311
+  connection:
+    host: 192.168.11.2
+    port: 1883
+    keepalive: 60
+  private_path: device/001
+serializer: json:dumps
+deserializer: json:loads
+bridge:
+
+  # - - - - - - -  - - - - - - Example Messages - - - - - - - - - - - - - - 
+
+  # Bool
+  - factory: mqtt_bridge.bridge:RosToMqttBridge
+    msg_type: std_msgs.msg:Bool
+    topic_from: /ros_bool_test
+    topic_to: AL19_Lab/ros_bool_test/dummy
+  - factory: mqtt_bridge.bridge:MqttToRosBridge
+    msg_type: std_msgs.msg:Bool
+    topic_from: AL19_Lab/ros_bool_test/dummy
+    topic_to: /ros_bool_test
+
+
+  # String
+  - factory: mqtt_bridge.bridge:RosToMqttBridge
+    msg_type: std_msgs.msg:String
+    topic_from: /ros_string_test
+    topic_to: AL19_Lab/ros_string_test/dummy
+  - factory: mqtt_bridge.bridge:MqttToRosBridge
+    msg_type: std_msgs.msg:String
+    topic_from: AL19_Lab/ros_string_test/dummy
+    topic_to: /ros_string_test
+
+
+  # Int16
+  - factory: mqtt_bridge.bridge:RosToMqttBridge
+    msg_type: std_msgs.msg:Int16
+    topic_from: /ros_int16_test
+    topic_to: AL19_Lab/ros_int16_test
+  - factory: mqtt_bridge.bridge:MqttToRosBridge
+    msg_type: std_msgs.msg:Int16
+    topic_from: AL19_Lab/ros_int16_test
+    topic_to: /ros_int16_test
+
+
+  # Float32
+  - factory: mqtt_bridge.bridge:RosToMqttBridge
+    msg_type: std_msgs.msg:Float32
+    topic_from: /ros_float32_test
+    topic_to: AL19_Lab/ros_float32_test
+  - factory: mqtt_bridge.bridge:MqttToRosBridge
+    msg_type: std_msgs.msg:Float32
+    topic_from: AL19_Lab/ros_float32_test
+    topic_to: /ros_float32_test
+
+
+  # Byte
+  - factory: mqtt_bridge.bridge:RosToMqttBridge
+    msg_type: std_msgs.msg:Byte
+    topic_from: /ros_byte_test
+    topic_to: AL19_Lab/ros_byte_test
+  - factory: mqtt_bridge.bridge:MqttToRosBridge
+    msg_type: std_msgs.msg:Byte
+    topic_from: AL19_Lab/ros_byte_test
+    topic_to: /ros_byte_test
+
+
+ # pose Stamped
+  - factory: mqtt_bridge.bridge:RosToMqttBridge
+    msg_type: geometry_msgs.msg:PoseStamped
+    topic_from: /ros_posestamped_test
+    topic_to: AL19_Lab/ros_posestamped_test
+  - factory: mqtt_bridge.bridge:MqttToRosBridge
+    msg_type: geometry_msgs.msg:PoseStamped
+    topic_from: AL19_Lab/ros_posestamped_test
+    topic_to: /ros_posestamped_test
+  # - - - - - - -  - - - - - - Igus CONFIGS - - - - - - - - - - - - - - 
+
+# pose Stamped
+  - factory: mqtt_bridge.bridge:RosToMqttBridge
+    msg_type: geometry_msgs.msg:PoseStamped
+    topic_from: /targpos
+    topic_to: AL19_Lab/IndustrialRobot/indrob01/Commands/ROS/Setpoint
+  - factory: mqtt_bridge.bridge:MqttToRosBridge
+    msg_type: geometry_msgs.msg:PoseStamped
+    topic_from: AL19_Lab/IndustrialRobot/indrob01/Signals/ROS/CurrentPosition
+    topic_to: /robpos
+
+# c_negative
+  - factory: mqtt_bridge.bridge:RosToMqttBridge
+    msg_type: std_msgs.msg:Bool
+    topic_from: /indros_mag
+    topic_to: AL19_Lab/IndustrialRobot/indrob01/Signals/MagnetOn
+  - factory: mqtt_bridge.bridge:MqttToRosBridge
+    msg_type: std_msgs.msg:Bool
+    topic_from: AL19_Lab/IndustrialRobot/indrob01/Commands/MagnetOn
+    topic_to: /industrialros
+
+
+# c_negative
+  - factory: mqtt_bridge.bridge:RosToMqttBridge
+    msg_type: std_msgs.msg:Bool
+    topic_from: /indros_mag
+    topic_to: AL19_Lab/IndustrialRobot/indrob01/Commands/MagnetOn
+  - factory: mqtt_bridge.bridge:MqttToRosBridge
+    msg_type: std_msgs.msg:Bool
+    topic_from: AL19_Lab/IndustrialRobot/indrob01/Commands/AutomaticModeVision
+    topic_to: /belt_ready
+
+# - - - - - - -  - - - - - - Mobile Robot CONFIGS - - - - - - - - - - - - - - 
+
+# pose Stamped
+  - factory: mqtt_bridge.bridge:RosToMqttBridge
+    msg_type: geometry_msgs.msg:PoseStamped
+    topic_from: /robot_pos
+    topic_to: AL19_Lab/MobileRobot/mobrob01/Signals/ROS/CurrentPositionCamera
+  - factory: mqtt_bridge.bridge:MqttToRosBridge
+    msg_type: geometry_msgs.msg:PoseStamped
+    topic_from: AL19_Lab/MobileRobot/mobrob01/Commands/ROS/Setpoint
+    topic_to: /custum_goal
+
+# twistmessage for manual control
+  - factory: mqtt_bridge.bridge:RosToMqttBridge
+    msg_type: geometry_msgs.msg:Twist
+    topic_from: /navigation/cmd_vel
+    topic_to: AL19_Lab/MobileRobot/mobrob01/Signals/ROS/ManualGains
+  - factory: mqtt_bridge.bridge:MqttToRosBridge
+    msg_type: geometry_msgs.msg:Twist
+    topic_from: AL19_Lab/MobileRobot/mobrob01/Commands/ROS/ReferenceGains
+    topic_to: /navigation/cmd_vel
+
+
+  # - - - - - - -  - - - - - - DRONE CONFIGS - - - - - - - - - - - - - - 
+
+  # robpos robpos
+  - factory: mqtt_bridge.bridge:RosToMqttBridge
+    msg_type: geometry_msgs.msg:PoseStamped
+    topic_from: /mavros/setpoint_position/local
+    topic_to: mavros/setpoint_position/local
+  - factory: mqtt_bridge.bridge:MqttToRosBridge
+    msg_type: geometry_msgs.msg:PoseStamped
+    topic_from: mavros/setpoint_position/local
+    topic_to: /mavros/setpoint_position/local
+
+
+
+  # ros_float
+  - factory: mqtt_bridge.bridge:RosToMqttBridge
+    msg_type: std_msgs.msg:Float32
+    topic_from: /ros_float
+    topic_to: dummy/AL19_Lab/ros_float
+  - factory: mqtt_bridge.bridge:MqttToRosBridge
+    msg_type: std_msgs.msg:Float32
+    topic_from: dummy/AL19_Lab/ros_float
+    topic_to: /ros_float
+
+
+
+  # rob_bools
+  - factory: mqtt_bridge.bridge:RosToMqttBridge
+    msg_type: beginner_tutorials.msg:Bools
+    topic_from: /rob_bool
+    topic_to: AL19_Lab/rob_bool
+  - factory: mqtt_bridge.bridge:MqttToRosBridge
+    msg_type: beginner_tutorials.msg:Bools
+    topic_from: AL19_Lab/rob_bool
+    topic_to: /rob_bools
+
+  # ros_bools
+  - factory: mqtt_bridge.bridge:RosToMqttBridge
+    msg_type: beginner_tutorials.msg:Bools
+    topic_from: /ros_bool
+    topic_to: dummy/AL19_Lab/ros_bool
+  - factory: mqtt_bridge.bridge:MqttToRosBridge
+    msg_type: beginner_tutorials.msg:Bools
+    topic_from: dummy/AL19_Lab/ros_bool
+    topic_to: /ros_bools
+
+
+
+
+
+  # - - - - - - - - - - - - - - Industrial ROBOT CONFIGS - - - - - - - - - - -
+
+
+
+
+  # rob_bools
+  - factory: mqtt_bridge.bridge:RosToMqttBridge
+    msg_type: message_handle.msg:Bools
+    topic_from: /rob_bool
+    topic_to: rob_bool/dummy
+  - factory: mqtt_bridge.bridge:MqttToRosBridge
+    msg_type: message_handle.msg:Bools
+    topic_from: rob_bool/dummy
+    topic_to: /rob_bools
+
+  # ros_bools
+  - factory: mqtt_bridge.bridge:RosToMqttBridge
+    msg_type: message_handle.msg:Bools
+    topic_from: /ros_bool
+    topic_to: ros_bool/dummy
+  - factory: mqtt_bridge.bridge:MqttToRosBridge
+    msg_type: message_handle.msg:Bools
+    topic_from: ros_bool/dummy
+    topic_to: /ros_bools
+
+  # a_negative
+  - factory: mqtt_bridge.bridge:RosToMqttBridge
+    msg_type: std_msgs.msg:Bool
+    topic_from: /a_negative
+    topic_to: a_negative/dummy
+  - factory: mqtt_bridge.bridge:MqttToRosBridge
+    msg_type: std_msgs.msg:Bool
+    topic_from: a_negative/dummy
+    topic_to: /a_negativee
+  # b_negative
+  - factory: mqtt_bridge.bridge:RosToMqttBridge
+    msg_type: std_msgs.msg:Bool
+    topic_from: /b_negative
+    topic_to: b_negative/dummy
+  - factory: mqtt_bridge.bridge:MqttToRosBridge
+    msg_type: std_msgs.msg:Bool
+    topic_from: b_negative/dummy
+    topic_to: /b_negativee
+  # c_negative
+  - factory: mqtt_bridge.bridge:RosToMqttBridge
+    msg_type: std_msgs.msg:Bool
+    topic_from: /c_negative
+    topic_to: c_negative/dummy
+  - factory: mqtt_bridge.bridge:MqttToRosBridge
+    msg_type: std_msgs.msg:Bool
+    topic_from: c_negative/dummy
+    topic_to: /c_negativee
+
+  # echo back
+  - factory: mqtt_bridge.bridge:RosToMqttBridge
+    msg_type: std_msgs.msg:String
+    topic_from: /echo
+    topic_to: echo
+  - factory: mqtt_bridge.bridge:MqttToRosBridge
+    msg_type: std_msgs.msg:String
+    topic_from: echo
+    topic_to: /back
+  # private path
+  - factory: mqtt_bridge.bridge:RosToMqttBridge
+    msg_type: std_msgs.msg:String
+    topic_from: /private/echo
+    topic_to: ~/echo
+  - factory: mqtt_bridge.bridge:MqttToRosBridge
+    msg_type: std_msgs.msg:String
+    topic_from: ~/echo
+    topic_to: /private/back
+ # geo geom
+  - factory: mqtt_bridge.bridge:RosToMqttBridge
+    msg_type: geometry_msgs.msg:PoseStamped
+    topic_from: /targpos
+    topic_to: targpos/dummy
+  - factory: mqtt_bridge.bridge:MqttToRosBridge
+    msg_type: geometry_msgs.msg:PoseStamped
+    topic_from: targpos/dummy
+    topic_to: /targposi
+ # robpos robpos
+  - factory: mqtt_bridge.bridge:RosToMqttBridge
+    msg_type: geometry_msgs.msg:PoseStamped
+    topic_from: /robpos
+    topic_to: robpos/dummy
+  - factory: mqtt_bridge.bridge:MqttToRosBridge
+    msg_type: geometry_msgs.msg:PoseStamped
+    topic_from: robpos/dummy
+    topic_to: /robposi
